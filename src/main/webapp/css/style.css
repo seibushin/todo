@@ -1,0 +1,102 @@
+.input {
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.input:hover {
+    color: #000;
+    background-color: #ccc;
+}
+
+.dummy {
+    display: none;
+}
+
+#todo-list {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.to-do {
+    text-align: left;
+}
+
+.dueDate {
+    font-size: 0.8em;
+    color: #cccccc;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.description-edit-w {
+    position: relative;
+}
+
+.delete {
+    visibility: hidden;
+}
+
+.to-do:hover .delete {
+    visibility: visible;
+}
+
+.update {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.description-edit-w:hover .description-edit {
+    border: 1px solid #ccc;
+}
+
+.description-edit-w:hover .update {
+    visibility: visible;
+}
+
+.description-edit {
+    text-align: left;
+    padding: 2px;
+    border: 1px solid transparent;
+    width: 100%;
+}
+
+.description-edit:focus {
+    border: 1px solid #ccc;
+}
+
+.description-edit:focus + .update {
+    visibility: visible;
+}
+
+.check:before {
+    content: "\f111"
+}
+
+.check.true:before {
+    content: "\f058"
+}
+
+.check-w:hover .check:before {
+    content: "\f058"
+}
+
+.check-w:hover .check.true:before {
+    content: "\f058";
+    cursor: default;
+}
