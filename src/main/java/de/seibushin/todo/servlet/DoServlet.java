@@ -7,19 +7,21 @@ package de.seibushin.todo.servlet;
 import de.seibushin.todo.dao.TodoDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DoServlet", urlPatterns = {"/do"}, loadOnStartup = 1)
-public class DoServlet extends HttpServlet {
+@RestController
+@RequestMapping("/do")
+public class DoServlet {
 	private static final Logger log = LoggerFactory.getLogger(DoServlet.class);
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	@PostMapping
+	protected void doTodo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		try {
 			int id = Integer.parseInt(req.getParameter("id"));
 

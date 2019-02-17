@@ -8,6 +8,7 @@
 <jsp:useBean id="now" class="java.util.Date"/>
 <jsp:useBean id="dao" class="de.seibushin.todo.dao.TodoDao"/>
 <fmt:formatDate var="now" value="${now}" pattern="yyyy-MM-dd"/>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>To-Do</title>

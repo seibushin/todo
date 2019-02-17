@@ -1,28 +1,37 @@
 plugins {
-    id 'war'
-    id 'com.bmuschko.tomcat' version '2.5'
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
 }
 
 group 'de.seibushin'
 version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+mainClassName = 'de.seibushin.todo.Main'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.16'
+    compile 'org.springframework:spring-webmvc:5.1.5.RELEASE'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+
     compile 'ch.qos.logback:logback-classic:1.0.13'
     compile 'com.h2database:h2:1.4.197'
     compile 'org.hibernate:hibernate-core:5.4.1.Final'
     compile 'javax.servlet:jstl:1.2'
-
-    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-
-    tomcat 'org.apache.tomcat.embed:tomcat-embed-core:9.0.16'
-    tomcat 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.16'
 }
 
-tomcat {
-    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
-    ajpProtocol = 'org.apache.coyote.ajp.AjpNio2Protocol'
+task zipWebapp(type: Zip) {
+    from "$projectDir/src/main/webapp"
 }
+
+shadowJar {
+    configurations = [project.configurations.compile]
+    from "$buildDir/distributions/$project.name" + "-" + "$version" +".zip"
+    mergeServiceFiles()
+}.dependsOn(zipWebapp)

@@ -1,10 +1,13 @@
 $(function () {
     // create
-    $("#create").ajaxForm(function (resp) {
-        // reset form
-        $("#create").trigger("reset");
-        // create to-do
-        createTodo(resp);
+    $("#create").ajaxForm({
+        dataType: "json",
+        success: function (resp) {
+            // reset form
+            $("#create").trigger("reset");
+            // create to-do
+            createTodo(resp);
+        }
     });
 
     // search
@@ -27,7 +30,7 @@ $(function () {
     });
 
 
-    $(".to-do").not(".dummy").each(function(index, el) {
+    $(".to-do").not(".dummy").each(function (index, el) {
         init($(el));
     });
 });
@@ -46,7 +49,7 @@ function search(search, done, isDone) {
         success: function (resp) {
             // remove all not matching
             $("#todo-list .to-do").not(".dummy").remove();
-            $.each(resp.todos, function (index, el) {
+            $.each(resp, function (index, el) {
                 // insert all found
                 createTodo(el);
             });
@@ -72,7 +75,7 @@ function createTodo(doto) {
     dummy.removeClass("dummy");
     dummy.find(".title").text(doto.title);
     dummy.find(".dueDate").text(doto.dueDate);
-    dummy.find(".done").addClass(doto.done)
+    dummy.find(".done").addClass('' + doto.done)
     dummy.find(".id").val(doto.id);
     dummy.find(".description").val(doto.description);
     dummy.appendTo("#todo-list");

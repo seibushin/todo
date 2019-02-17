@@ -8,19 +8,21 @@ import de.seibushin.todo.dao.TodoDao;
 import de.seibushin.todo.model.Todo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UpdateServlet", urlPatterns = {"/update"}, loadOnStartup = 1)
-public class UpdateServlet extends HttpServlet {
+@RestController
+@RequestMapping("/update")
+public class UpdateServlet {
 	private static final Logger log = LoggerFactory.getLogger(UpdateServlet.class);
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	@PostMapping
+	protected void update(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		try {
 			int id = Integer.parseInt(req.getParameter("id"));
 			String description = req.getParameter("description");

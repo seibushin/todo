@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Simple POJO for the to-do
+ */
 @Entity
 public class Todo implements Serializable {
 	@Id
@@ -61,18 +64,14 @@ public class Todo implements Serializable {
 		this.done = done;
 	}
 
-	/**
-	 * Convert object to json
-	 *
-	 * @return json
-	 */
-	public String toJson() {
-		return "{" +
-				"\"id\":\"" + getId() + "\"" +
-				", \"title\":\"" + getTitle() + "\"" +
-				", \"description\":\"" + getDescription() + "\"" +
-				", \"dueDate\":\"" + getDueDate() + "\"" +
-				", \"done\":\"" + isDone() + "\"" +
-				"}";
+	@Override
+	public String toString() {
+		return "Todo{" +
+				"id=" + id +
+				", title='" + title + '\'' +
+				", description='" + description + '\'' +
+				", dueDate=" + dueDate +
+				", done=" + done +
+				'}';
 	}
 }

@@ -19,15 +19,6 @@
     display: none;
 }
 
-#todo-list {
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.to-do {
-    text-align: left;
-}
-
 .dueDate {
     font-size: 0.8em;
     color: #cccccc;
@@ -38,12 +29,18 @@
     font-size: 20px;
 }
 
-.description-edit-w {
-    position: relative;
-}
 
 .delete {
     visibility: hidden;
+}
+
+#todo-list {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.to-do {
+    text-align: left;
 }
 
 .to-do:hover .delete {
@@ -59,6 +56,10 @@
     height: 20px;
     overflow: hidden;
     visibility: hidden;
+}
+
+.description-edit-w {
+    position: relative;
 }
 
 .description-edit-w:hover .description-edit {

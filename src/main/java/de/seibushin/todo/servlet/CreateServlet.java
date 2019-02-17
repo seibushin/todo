@@ -4,24 +4,27 @@
  * ***************************************************/
 package de.seibushin.todo.servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.seibushin.todo.dao.TodoDao;
 import de.seibushin.todo.model.Todo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
-@WebServlet(name = "CreateServlet", urlPatterns = {"/create"}, loadOnStartup = 1)
-public class CreateServlet extends HttpServlet {
+@RestController
+@RequestMapping("/create")
+public class CreateServlet {
 	private static final Logger log = LoggerFactory.getLogger(CreateServlet.class);
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	@PostMapping
+	public void create(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String title = req.getParameter("title");
 		String description = req.getParameter("description");
 		String dueDate = req.getParameter("dueDate");
@@ -42,7 +45,7 @@ public class CreateServlet extends HttpServlet {
 			log.info("... todo created");
 			resp.setStatus(201);
 			resp.setHeader("content-type", "application/json");
-			resp.getWriter().write(todo.toJson());
+			resp.getWriter().write(new ObjectMapper().writeValueAsString(todo));
 			return;
 		}
 

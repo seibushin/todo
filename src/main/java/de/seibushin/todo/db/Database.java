@@ -7,14 +7,17 @@ package de.seibushin.todo.db;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Gives access to the sessionFactory and therefore access to the database
+ */
 public class Database {
 	private static SessionFactory sessionFactory;
 
 	/**
 	 * Explicitly initialize the sessionFactory this helps to reduce the loading time for the first access of the
 	 * web application
-	 *
-	 * To be clear it is sufficient to just call getSessionFactory without calling {@link #init()} which will result
+	 * <p>
+	 * To be clear it is sufficient to just call getSessionFactory without calling this method which will result
 	 * in lazy initialization
 	 */
 	public static void init() {
@@ -38,7 +41,7 @@ public class Database {
 	/**
 	 * Close the factory
 	 */
-	public static void closeSessionFactory() {
+	public static void close() {
 		sessionFactory.close();
 	}
 }
