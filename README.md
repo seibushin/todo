@@ -3,9 +3,9 @@ Powerfolder | skill demonstration
 
 ## Install
 <p>
-Use git to pull the project. Afterwards you can navigate to the project root and simply use
+Navigate to the project root and simply use
 <code>./gradlew shadowJar</code>
-to create jar. The jar will be located at <code>build/libs/todo-1.0.jar</code>
+to create the jar. The jar will be located at <code>build/libs/todo-1.0.jar</code>
 </p>
 <p>
 The created jar can be executed using <code>java -jar todo-1.0.jar</code>
@@ -23,4 +23,4 @@ Note: the baseDir <code>tomcat.8080</code> and the database <code>db.mv.db</code
 ## Usage
 <a href="http://localhost:8080/todo/">http://localhost:8080/todo/</a><br>
 <p>Use the first section of the page to add a new todo. A todo needs a title and a date.</p>
-<p>Use the second section to search/view your open todos and edit them. You can set the Done? to true to show already done todos in the list.</p>
+<p>Use the second section to search/view your open todos and edit them. You can set the done-flag to true to show already done todos in the list.</p>
